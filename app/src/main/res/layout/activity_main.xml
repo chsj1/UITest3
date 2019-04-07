@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <!--
+   很多情况之下,merge节点可以和include节点配合使用
+   -->
+    <!--<merge xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#fff"-->
+    <!--android:orientation="vertical">-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_anr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用于演示anr" />
+
+
+    <!--
+    减少过渡绘制的几种情况:
+    1)减少冗余的background
+    2)根据实际情况决定是否去除window的background
+    3)ImageView的兜底图和src都是用imageDrawable来实现
+    4)善用merge标签
+    5)善用viewstub标签
+    6)使用canvas的clipRect来减少过渡绘制
+    -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="显示过渡绘制的情况" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!--
+    include的id与布局的id冲突的时候,以include标签中的id为准
+    支持以layout_开头的属性(必须包含layout_width和layout_height属性)
+    -->
+    <include
+        android:id="@+id/includelayout1"
+        layout="@layout/include_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp" />
+
+    <ViewStub
+        android:id="@+id/vs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout="@layout/include_layout" />
+
+</LinearLayout>
